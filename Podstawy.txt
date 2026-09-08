@@ -1,0 +1,12 @@
+Repository (repozytorium) – cały projekt z historią zmian
+Branch – gałąź drzewa tam rozwijamy projekt
+Main  Master – główna gałąź projekt
+Commit – punkt na gałęzi czyli zapisany stan projektu
+HEAD – pokazuje w którym commitcie aktualnie jesteśmy
+Merge – połączenie dwóch gałęzi
+Status  check – sprawdzenie co aktualnie się dzieje w projekcie
+
+git commit - zapis zmian
+git branch - pokazuje branche
+git branch (nazwa) - tworzy nowy branch
+git merge - łączy zmiany branchy
