@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zadanie 3</title>
+    <script
+        src="https://code.jquery.com/jquery-4.0.0.min.js"
+        integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao="
+        crossorigin="anonymous">
+    </script>
+    <script>
+        $(function(){
+            $("#test").on("click",function(){
+                console.log("Nasz event");
+            });
+
+            $("#test").click(function(){
+                console.log("Nasz event 2");
+            })
+
+            $("#przywitaj").on("click",function(){
+                $("#komunikat").prepend().text("Cześć");
+            })
+
+            $("#kwadrat").on("click",function(){
+                $("#kwadrat").css("background-color","red");
+            })
+
+            $("#resetuj").on("click",function(){
+                $("#kwadrat").css("background-color","gray");
+                $("#komunikat").text("");
+            })
+            
+            let a = 0;
+             $("#kwadrat").on("click",function(){
+                a++;
+                $("#komunikat").prepend().text("Kliknięto" + a);
+            })
+        })
+    </script>
+     <style>
+    #kwadrat { width: 150px; height: 150px; background: lightgray; }
+  </style>
+</head>
+<body>
+    <div id="container">
+     <h1>Lista Gier Komputerowych</h1>
+    <button id="test">Test</button>
+    </div>
+
+     <button id="przywitaj">Przywitaj się</button>
+     <button id="resetuj">resetuj</button>
+  <p id="komunikat"></p>
+ 
+  <div id="kwadrat"></div>
+</body>
+</html>
