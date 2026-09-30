@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wprowadzenie</title>
+    <script
+        src="https://code.jquery.com/jquery-4.0.0.min.js"
+        integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao="
+        crossorigin="anonymous"></script>
+    <script>
+        $(function(){
+            //object event
+            $(document).on("keydown keyup keypress",function(){
+                $('#eventType').text(event.type);
+            })
+            $(document).on("mousemove",function(){
+                $('#pageX').text(event.pageX);
+                $('#pageY').text(event.pageY);
+            })
+            let positionX = 0;
+            let positionY = 0;
+            $("#jab").css(({
+                "margin-left" : Math.floor((Math.random() * 100) + 1),
+                "margin-top" : Math.floor((Math.random() * 100) + 1)
+            }))
+            $(document).on("keypress",function(){
+                if(event.key == "d"){
+                    positionX = positionX + 10;
+                    $("#kwadrat").css("margin-left",positionX + "px");
+                }
+                if(event.key == "a"){
+                    positionX = positionX - 10;
+                    $("#kwadrat").css("margin-left",positionX + "px");
+                }
+                if(event.key == "s"){
+                    positionY = positionY + 10;
+                    $("#kwadrat").css("margin-top",positionY + "px");
+                }
+                if(event.key == "w"){
+                    positionY = positionY - 10;
+                    $("#kwadrat").css("margin-top",positionY + "px");
+                }
+            })
+        })
+    </script>
+    <style>
+        body {
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .kwad{
+            background-color: red;
+            height: 100px;
+            width: 100px;
+        }
+        .jab{
+            background-color: greenyellow;
+            height: 50px;
+            width: 50px;
+        }
+    </style>
+</head>
+<body>
+     <input type="text" id="pole">
+ 
+        <p>
+            Typ zdarzenia:
+            <span id="eventType">---</span>
+        </p>
+ 
+        <p>
+            Pozycja myszy:
+            X = <span id="pageX">---</span>,
+            Y = <span id="pageY">---</span>
+        </p>
+        <div id="kwadrat" class="kwad"></div>
+        <div id="jab" class="jab"></div>
+</body>
+</html>
