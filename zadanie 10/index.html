@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wprowadzenie</title>
+    <script
+        src="https://code.jquery.com/jquery-4.0.0.min.js"
+        integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao="
+        crossorigin="anonymous"></script>
+    <script>
+        $(function(){
+
+            $("#przelacz").click(function(){
+                $("#pudelko").toggle()
+            })
+            $("#pokaz").click(function(){
+                $("#pudelko").show()
+            })
+            $("#ukryj").click(function(){
+                $("#pudelko").hide()
+            })
+            $("#gora").click(function(){
+                $("#pudelko").slideUp()
+            })
+            $("#dol").click(function(){
+                $("#pudelko").slideDown()
+            })
+            $("#kit").click(function(){
+                $("#pudelko").slideToggle()
+            })
+        })
+    </script>
+    <style>
+        body {
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+     <p id="pudelko">Widzisz mnie</p>
+     <button id="przelacz">Pokaż/ukryj</button>
+     <button id="pokaz">Pokaż</button>
+     <button id="ukryj">ukryj</button>
+     <button id="gora">zwin w gore</button>
+     <button id="dol">zwin w dol</button>
+     <button id="kit">cos</button>
+
+</body>
+</html>
