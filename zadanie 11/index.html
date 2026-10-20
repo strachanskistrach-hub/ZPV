@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wprowadzenie</title>
+    <script
+        src="https://code.jquery.com/jquery-4.0.0.min.js"
+        integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao="
+        crossorigin="anonymous"></script>
+    <script>
+        $(function(){
+            $("#fr").submit(function(e){
+                e.preventDefault()
+                if($("#nick").val() == ""){
+                    $("#info").text("Podaj nick!")
+                }else{
+                    $("#info").text("Wysłano!")
+                }
+            })
+
+            $("#asd").submit(function(e){
+                e.preventDefault()
+                if($("#haslo").val().length >= 6){
+                    $("#inf").text("Zalogowano").css("color","green")
+                }else{
+                    $("#inf").text("Hasło jest za krótkie").css("color","red")
+                }
+            })
+
+            $("#kolor").change(function(){
+                $("body").css("background-color",$(this).val())
+            })
+
+            $("#zadpizza").change(function(){
+                $("#pizza").text("Do zapłaty: " + $(this).val())
+            })
+        })
+    </script>
+    <style>
+        body {
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+     <form id="fr">
+        <input type="text" id="nick">
+        <button type="submit">wyslij</button>
+     </form>
+     <p id="info"></p>
+     <hr>
+     <form id="asd">
+        Email<input type="text" id="email"> <br>
+        Hasło<input type="password" id="haslo"> <br>
+        <button type="submit">Wyslij</button>
+     </form>
+     <p id="inf"></p>
+     <hr>
+     <select id="kolor">
+        <option value="white">biały</option>
+        <option value="yellow">żółty</option>
+        <option value="lightblue">niebieski</option>
+        <option value="lightgreen">green(r34)</option>
+     </select>
+     <hr>
+     <select id="zadpizza">
+        <option value="20zł">Mała 20zł</option>
+        <option value="30zł">Średnia 30zł</option>
+        <option value="40zł">Duża 40zł</option>
+     </select>
+     <p id="pizza"></p>
+</body>
+</html>

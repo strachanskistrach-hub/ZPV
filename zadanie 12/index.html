@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wprowadzenie</title>
+    <script
+        src="https://code.jquery.com/jquery-4.0.0.min.js"
+        integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao="
+        crossorigin="anonymous"></script>
+    <script>
+        $(function(){
+            $("#newsletter").change(function(){
+                if($(this).is(":checked")){
+                    $("#stan").text("Zapisano")
+                }else{
+                    $("#stan").text("Wypisano")
+                }
+            })
+
+            $("#regulamin").change(function(){
+                if($(this).is(":checked")){
+                    $("#rej").prop("disabled",false)
+                }else{
+                    $("#rej").prop("disabled",true)
+                }
+            })
+
+            $("#tekst").on("input",function(){
+                $("#podglad").text($(this).val())
+            })
+
+            $("#tekscik").on("input",function(){
+                let charactersLeft = 100 - $(this).val().length
+                $("#ilosc").text(charactersLeft)
+                if(charactersLeft < 10){
+                    $("#ilosc").css("color","red")
+                }else{
+                    $("#ilosc").css("color","green")
+                }
+            })
+        })
+    </script>
+    <style>
+        body {
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    <input type="checkbox" id="newsletter">chce newsletter
+    <p id="stan"></p>
+    <hr>
+
+    <form id="asd">
+        Email<input type="text" id="email"> <br>
+        Hasło<input type="password" id="haslo"> <br>
+     </form>
+     <input type="checkbox" id="regulamin">Akceptuje regulamin <br>
+     <button id="rej" disabled>zarejestruj</button>
+     <hr>
+
+     <input type="text" id="tekst">
+     <p>Podgląd: <span id="podglad"></span></p>
+     <hr>
+
+     <input type="text" id="tekscik">Max 100 znaków
+     <p>Zostało znaków: <span id="ilosc">100</span></p>
+</body>
+</html>
