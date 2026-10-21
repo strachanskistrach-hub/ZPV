@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wprowadzenie</title>
+    <script
+        src="https://code.jquery.com/jquery-4.0.0.min.js"
+        integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao="
+        crossorigin="anonymous"></script>
+    <script>
+        $(function(){
+            
+            $("#sprawdz").click(function(){
+                if($("#tekst").val().trim() === ""){
+                    $("#kom").text("To pole jest puste.")
+                }else{
+                    $("#kom").text($("#tekst").val())
+                }
+            })
+
+            $("#przy").click(function(){
+                if($("#naz").val().trim() === ""){
+                    $("#asd").text("Podaj nazwisko").css("color","red")
+                }else{
+                    $("#asd").text("Wysłano formularz").css("color","green")
+                }
+                })
+            $("#qwe").click(function(){
+                let wiek = $("#wiek").val();
+                if(isNaN(wiek)){
+                    $("#blad").text("Wiek musi być liczbą")
+                }else{
+                    $("#blad").text("Masz " + wiek + " lat")
+                }
+            })
+
+            $("#zap").click(function(){
+                let ocena = $("#ocena").val();
+                if(isNaN(ocena)){
+                    $("#ocenka").text("Ocena musi być liczbą")
+                }else if(ocena < 1 || ocena > 6){
+                    $("#ocenka").text("Ocena musi byc z zakresu 1-6")
+                }else{
+                    $("#ocenka").text("Zapisano ocenę: " + ocena)
+                }
+            })
+       })
+    </script>
+    <style>
+        body {
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="tekst">
+    <button id="sprawdz">Sprawdź</button>
+    <p id="kom"></p>
+    <hr>
+
+    <input type="text" id="naz">
+    <button id="przy">Przy</button>
+    <p id="asd"></p>
+    <hr>
+
+    <input type="text" id="wiek">
+    <button id="qwe">Prrzycisk</button>
+    <p id="blad"></p>
+    <hr>
+
+    <input type="text" id="ocena">
+    <button id="zap">Zapiz</button>
+    <p id="ocenka"></p>
+    <hr>
+
+
+</body>
+</html>
