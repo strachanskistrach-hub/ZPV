@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wprowadzenie</title>
+    <script
+        src="https://code.jquery.com/jquery-4.0.0.min.js"
+        integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao="
+        crossorigin="anonymous"></script>
+    <script>
+        $(function(){
+            
+            
+        $("#szukaj").keyup(function(e) {
+            let input = $("#szukaj").val();
+
+            if (e.key === "Enter") {
+                if (input.trim() === "") {
+                    $("#wynik").text("Wpisz frazę").css("color", "red");
+                } else {
+                    $("#wynik").text("Szukam " + input).css("color", "black");
+                }
+            }else if (e.key === "Escape") {
+                $("#wynik").text("");
+                $("#szukaj").val("");
+            }
+        })
+
+        $("#haslo").on("input",function(){
+            let dlugosc = $("#haslo").val().length
+                if(dlugosc < 6){
+                    $("#sila").text("Słabe").addClass("slabe")
+                }else if(dlugosc >= 6 && dlugosc <= 9){
+                    $("#sila").text("Średnie").addClass("srednie")
+                }else if(dlugosc >= 10){
+                    $("#sila").text("Silne").addClass("silne")
+                }
+            })
+
+            $("#logowanie").submit(function(e){
+                e.preventDefault()
+                if($("#login").val().trim() ===  ""){
+                    $("#info").text("Podaj login")
+                }else if($("#pass").val().length < 6){
+                    $("#info").text("Hasło jest za krótkie")
+                }else{
+                    $("#info").text("Witaj " + $("#login").val())
+                }
+            })
+
+
+            $("#rozmiar").change(function(){
+                console.log($(this).val())
+                $("#tekst").text("Aktualny rozmiar " + $(this).val() + "px").css("font-size",$(this).val()+"px")
+
+            })
+
+
+            $(".dodatek").on("change", function() {
+            let suma = 20;
+            $(".dodatek:checked").each(function() {
+                suma += Number($(this).val());
+            });
+            $("#suma").text(suma);
+        
+            });
+            $("#akcept").on("change", function() {
+                $("#zamow").prop("disabled", !this.checked);
+        });
+
+        $("#licz").on("click", function() {
+        let waga = $("#waga").val().trim();
+        let wzrost = $("#wzrost").val().trim();
+
+        if (waga === "" || wzrost === "") {
+            $("#bmi").text("Wypełnij oba pola").css("color", "red");
+        } else if (isNaN(waga) || isNaN(wzrost)) {
+            $("#bmi").text("Wpisz poprawne liczby").css("color", "red");
+        } else if (waga < 20 || waga > 300) {
+            $("#bmi").text("Waga musi być od 20 do 300 kg").css("color", "red");
+        } else if (wzrost < 100 || wzrost > 250) {
+            $("#bmi").text("Wzrost musi być od 100 do 250 cm").css("color", "red");
+        } else {
+            let wynik = waga / (wzrost / 100) ** 2;
+            $("#bmi").text("BMI: " + wynik.toFixed(1)).css("color", "black");
+        }
+        });
+
+       })
+    </script>
+    <style>
+        body {
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .slabe{
+            background-color: red;
+        }
+        .srednie{
+            background-color: orange;
+        }
+        .silne{
+            background-color: lightgreen;
+        }
+    </style>
+</head>
+<body>
+   <input type="text" id="szukaj" placeholder="Szukaj...">
+<p id="wynik"></p>
+<hr>
+
+<input type="password" id="haslo">
+<p id="sila"></p>
+<hr>
+
+<form id="logowanie">
+  <input type="text" id="login" placeholder="Login">
+  <input type="password" id="pass" placeholder="Hasło">
+  <button type="submit">Zaloguj</button>
+</form>
+<p id="info"></p>
+<hr>
+
+<select id="rozmiar">
+  <option value="14">Mały</option>
+  <option value="20">Średni</option>
+  <option value="28">Duży</option>
+</select>
+<p id="tekst">Przykładowy tekst akapitu.</p>
+<hr>
+
+<label><input type="checkbox" class="dodatek" value="3"> Ser (3 zł)</label>
+<label><input type="checkbox" class="dodatek" value="5"> Szynka (5 zł)</label>
+<label><input type="checkbox" class="dodatek" value="4"> Pieczarki (4 zł)</label>
+<p>Cena: <span id="suma">20</span> zł</p>
+<label><input type="checkbox" id="akcept"> Potwierdzam zamówienie</label>
+<button id="zamow" disabled>Zamów</button>
+<hr>
+
+<input type="text" id="waga" placeholder="Waga (kg)">
+<input type="text" id="wzrost" placeholder="Wzrost (cm)">
+<button id="licz">Oblicz</button>
+<p id="bmi"></p>
+</body>
+</html>
