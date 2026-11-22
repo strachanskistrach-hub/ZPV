@@ -15,6 +15,39 @@
 
     <script>
         $(function(){
+
+        let koszyk = [];
+        $(".do-koszyka").on("click", function(){
+            const produkt = $(this).parent();
+            const nazwa = produkt.data("nazwa");
+            const cena = Number(produkt.data("cena"));
+
+            const istniejacy = koszyk.find(function (p) {
+                return p.nazwa === nazwa;
+            });
+
+            if (istniejacy) {
+                istniejacy.ilosc++;
+            } else {
+                koszyk.push({ nazwa: nazwa, cena: cena, ilosc: 1 });
+            }
+
+            let licznik = 0;
+            $.each(koszyk, function(i, p){
+                licznik += p.ilosc;
+            });
+
+            $("#koszyk").text("🛒Koszyk (" + licznik + ")");
+            pokazKoszyk();
+            });
+            
+            function pokazKoszyk() {
+                const lista = $("#lista-koszyka").empty();
+
+                $.each(koszyk, function (i, p) {
+                    lista.append("<p>" + p.nazwa + " × " + p.ilosc + "</p>");
+                });
+            }
             
         })
     </script>
