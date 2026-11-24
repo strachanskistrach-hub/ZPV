@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sklep z koszykiem</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script
+        src="https://code.jquery.com/jquery-4.0.0.min.js"
+        integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao="
+        crossorigin="anonymous">
+    </script>
+
+    <script>
+        $(function(){
+
+        let koszyk = [];
+        $(".do-koszyka").on("click", function(){
+            const produkt = $(this).parent();
+            const nazwa = produkt.data("nazwa");
+            const cena = Number(produkt.data("cena"));
+
+            const istniejacy = koszyk.find(function (p) {
+                return p.nazwa === nazwa;
+            });
+
+            if (istniejacy) {
+                istniejacy.ilosc++;
+            } else {
+                koszyk.push({ nazwa: nazwa, cena: cena, ilosc: 1 });
+            }
+
+            let licznik = 0;
+            $.each(koszyk, function(i, p){
+                licznik += p.ilosc;
+            });
+
+            $("#koszyk").text("🛒Koszyk (" + licznik + ")");
+            pokazKoszyk();
+            });
+            
+            function pokazKoszyk() {
+                const lista = $("#lista-koszyka").empty();
+
+                $.each(koszyk, function (i, p) {
+                    lista.append("<p>" + p.nazwa + " × " + p.ilosc + "</p>");
+                });
+            }
+            
+        })
+    </script>
+
+</head>
+
+<body>
+
+     <header>
+        <h1>Sklep internetowy</h1>
+        <div id="koszyk">🛒Koszyk (0)</div>
+    </header>
+
+    <main>
+        <section id="sekcja-produktow">
+
+            <h2>Nasze produkty</h2>
+
+            <div class="produkty">
+                
+                <div class="produkt" data-nazwa="Laptop" data-cena="2500">
+                    <img src="laptop.jpg" alt="Laptop">
+                    <h3>Laptop</h3>
+                    <p>2500 zł</p>
+                    <button class="do-koszyka">Do koszyka</button>
+                </div>
+
+                <div class="produkt" data-nazwa="Telefon" data-cena="1200">
+                    <img src="telefon.jpg" alt="Telefon">
+                    <h3>Telefon</h3>
+                    <p>1200 zł</p>
+                    <button class="do-koszyka">Do koszyka</button>
+                </div>
+
+                <div class="produkt" data-nazwa="Słuchawki" data-cena="400">
+                    <img src="sluchawki.jpg" alt="Słuchawki">
+                    <h3>Słuchawki </h3>
+                    <p>400 zł</p>
+                    <button class="do-koszyka">Do koszyka</button>
+                </div>
+
+                <div class="produkt" data-nazwa="Myszka" data-cena="150">
+                    <img src="myszka.jpg" alt="Myszka ">
+                    <h3>Myszka</h3>
+                    <p>150 zł</p>
+                    <button class="do-koszyka">Do koszyka</button>
+                </div>
+
+                <div class="produkt" data-nazwa="Klawiatura" data-cena="200">
+                    <img src="klawiatura.jpg" alt="Klawiatura">
+                    <h3>Klawiatura</h3>
+                    <p>200 zł</p>
+                    <button class="do-koszyka">Do koszyka</button>
+                </div>
+
+                <div class="produkt" data-nazwa="Monitor" data-cena="900">
+                    <img src="monitor.jpg" alt="Monitor ">
+                    <h3>Monitor</h3>
+                    <p>900 zł</p>
+                    <button class="do-koszyka">Do koszyka</button>
+                </div>
+
+                <div class="produkt" data-nazwa="Głośniki" data-cena="120">
+                    <img src="glosniki.jpg" alt="Głośniki">
+                    <h3>Głośniki</h3>
+                    <p>120 zł</p>
+                    <button class="do-koszyka">Do koszyka</button>
+                </div>
+
+                <div class="produkt" data-nazwa="Wiatrak" data-cena="140">
+                    <img src="wiatrak.jpg" alt="Wiatrak">
+                    <h3>Wiatrak</h3>
+                    <p>140 zł</p>
+                    <button class="do-koszyka">Do koszyka</button>
+                </div>
+
+            </div>
+            
+        </section>
+
+        <section id="sekcja-koszyka">
+            <h2>Twój koszyk</h2>
+
+            <div id="lista-koszyka">
+                <p>Koszyk jest pusty</p>
+            </div>
+
+            <h3>Suma: <span id="suma-koszyka">0.00 zł</span></h3>
+
+            <button id="zamow" disabled>Zamów</button>
+        </section>
+    </main>
+</body>
+</html>
