@@ -64,6 +64,7 @@
                     });
 
                     $("#koszyk").text("🛒Koszyk (" + licznik + ")");
+                    przeliczSume(); 
                 }
 
                 $("#lista-koszyka").on("click", ".plus", function () {
@@ -86,6 +87,16 @@
                     koszyk.splice(i, 1);
                     pokazKoszyk();
                 });
+
+                function przeliczSume() {
+                    let suma = 0;
+
+                    $.each(koszyk, function (i, p) {
+                        suma += p.cena * p.ilosc;
+                    });
+
+                    $("#suma-koszyka").text(suma.toFixed(2) + " zł");
+                }
             
         })
     </script>
