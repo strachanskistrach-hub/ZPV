@@ -42,12 +42,50 @@
             });
             
             function pokazKoszyk() {
-                const lista = $("#lista-koszyka").empty();
+                    const lista = $("#lista-koszyka").empty();
+                    let licznik = 0;
 
-                $.each(koszyk, function (i, p) {
-                    lista.append("<p>" + p.nazwa + " × " + p.ilosc + "</p>");
+                    if (koszyk.length === 0) {
+                        lista.append("<p>Koszyk jest pusty</p>");
+                    }
+
+                    $.each(koszyk, function (i, p) {
+                        lista.append(
+                            '<div class="pozycja" data-i="' + i + '">' +
+                                p.nazwa + ' ' + p.cena + ' zł  |  ilość ' +
+                                '<button class="minus"> − </button> ' +
+                                p.ilosc + 
+                                ' <button class="plus"> + </button> ' +
+                                '| Suma ' + (p.cena * p.ilosc) + ' zł ' +
+                                '<button class="usun"> Usuń produkt </button>' +
+                            '</div>'
+                        );
+                        licznik += p.ilosc;
+                    });
+
+                    $("#koszyk").text("🛒Koszyk (" + licznik + ")");
+                }
+
+                $("#lista-koszyka").on("click", ".plus", function () {
+                    const i = $(this).parent().data("i");
+                    koszyk[i].ilosc++;
+                    pokazKoszyk();
                 });
-            }
+
+                $("#lista-koszyka").on("click", ".minus", function () {
+                    const i = $(this).parent().data("i");
+                    koszyk[i].ilosc--;
+                    if (koszyk[i].ilosc === 0) {
+                        koszyk.splice(i, 1);
+                    }
+                    pokazKoszyk();
+                });
+
+                $("#lista-koszyka").on("click", ".usun", function () {
+                    const i = $(this).parent().data("i");
+                    koszyk.splice(i, 1);
+                    pokazKoszyk();
+                });
             
         })
     </script>
